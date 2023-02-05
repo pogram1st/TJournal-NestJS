@@ -36,7 +36,7 @@ let JwtStrategy = class JwtStrategy extends (0, passport_1.PassportStrategy)(pas
         this.userService = userService;
     }
     async validate(payload) {
-        const user = await this.userService.findById(payload.sub);
+        const user = await this.userService.findByEmail(payload.email);
         if (!user) {
             throw new common_1.UnauthorizedException("Нет доступа к этой странице");
         }
