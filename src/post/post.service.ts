@@ -9,6 +9,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { PostEntity } from "./entities/post.entity";
 import { Repository } from "typeorm";
 import { SearchPostDto } from "./dto/search-post.dto";
+import { CommentEntity } from "../comment/entities/comment.entity";
 
 @Injectable()
 export class PostService {
@@ -30,7 +31,10 @@ export class PostService {
   }
 
   async findAll() {
-    const posts = await this.repository.find({ order: { createdAt: "DESC" } });
+    const posts = await this.repository.find({
+      order: { createdAt: "DESC" },
+      relations: ["comments"],
+    });
     return posts.map((obj) => {
       delete obj.user.password;
       return obj;

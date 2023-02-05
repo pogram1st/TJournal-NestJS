@@ -32,7 +32,7 @@ AppModule = __decorate([
                 password: "yCtmaw3JnNOpHxcWVPz87w0UPOP6N5jn",
                 database: "tjournal",
                 entities: [user_entity_1.UserEntity, post_entity_1.PostEntity, comment_entity_1.CommentEntity],
-                synchronize: false,
+                synchronize: true,
             }),
             user_module_1.UserModule,
             post_module_1.PostModule,

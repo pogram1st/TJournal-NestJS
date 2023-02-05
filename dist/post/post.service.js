@@ -33,7 +33,10 @@ let PostService = class PostService {
         });
     }
     async findAll() {
-        const posts = await this.repository.find({ order: { createdAt: "DESC" } });
+        const posts = await this.repository.find({
+            order: { createdAt: "DESC" },
+            relations: ["comments"],
+        });
         return posts.map((obj) => {
             delete obj.user.password;
             return obj;

@@ -1,5 +1,6 @@
 import { UserEntity } from "../../user/entities/user.entity";
 import { OutputBlockData } from "../dto/create-post.dto";
+import { CommentEntity } from "../../comment/entities/comment.entity";
 
 import {
   Entity,
@@ -10,6 +11,7 @@ import {
   JoinColumn,
   OneToOne,
   ManyToOne,
+  OneToMany,
 } from "typeorm";
 
 @Entity("posts")
@@ -32,6 +34,10 @@ export class PostEntity {
   @ManyToOne(() => UserEntity, { nullable: false, eager: true })
   @JoinColumn({ name: "userId" })
   user: UserEntity;
+
+  @OneToMany(() => CommentEntity, (CommentEntity) => CommentEntity.post)
+  @JoinColumn({ name: "comments" })
+  comments: CommentEntity[];
 
   @Column({ default: 0 })
   views: number;

@@ -21,7 +21,7 @@ import { AuthModule } from "./auth/auth.module";
       password: "yCtmaw3JnNOpHxcWVPz87w0UPOP6N5jn",
       database: "tjournal",
       entities: [UserEntity, PostEntity, CommentEntity], // Передаем в зависимости Entity
-      synchronize: false,
+      synchronize: true,
     }),
     UserModule,
     PostModule,
