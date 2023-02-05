@@ -37,6 +37,20 @@ export class PostService {
     });
   }
 
+  async findPostsUser(userId) {
+    const posts = await this.repository.find({
+      where: {
+        user: {
+          id: userId,
+        },
+      },
+    });
+    return posts.map((obj) => {
+      delete obj.user.password;
+      return obj;
+    });
+  }
+
   async popular() {
     const qb = await this.repository.createQueryBuilder();
     qb.orderBy("views", "DESC");

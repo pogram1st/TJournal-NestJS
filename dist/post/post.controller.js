@@ -36,6 +36,9 @@ let PostController = class PostController {
     findAll() {
         return this.postService.findAll();
     }
+    findPostsUser(id) {
+        return this.postService.findPostsUser(+id);
+    }
     getPopularPosts() {
         return this.postService.popular();
     }
@@ -80,6 +83,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], PostController.prototype, "findAll", null);
+__decorate([
+    (0, common_1.Get)("/user/:id"),
+    __param(0, (0, common_1.Param)("id")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], PostController.prototype, "findPostsUser", null);
 __decorate([
     (0, common_1.Get)("/popular"),
     __metadata("design:type", Function),

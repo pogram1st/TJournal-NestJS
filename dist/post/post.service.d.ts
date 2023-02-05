@@ -16,6 +16,7 @@ export declare class PostService {
         description: string;
     } & PostEntity>;
     findAll(): Promise<PostEntity[]>;
+    findPostsUser(userId: any): Promise<PostEntity[]>;
     popular(): Promise<{
         items: PostEntity[];
         total: number;
