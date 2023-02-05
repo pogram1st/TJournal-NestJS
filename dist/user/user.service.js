@@ -28,7 +28,18 @@ let UserService = class UserService {
         return this.repository.find();
     }
     findById(id) {
-        return this.repository.findOneBy({ id });
+        return this.repository.findOne({
+            where: {
+                id,
+            },
+            select: {
+                id: true,
+                fullName: true,
+                email: true,
+                createdAt: true,
+                updatedAt: true,
+            },
+        });
     }
     findByEmail(email) {
         return this.repository.findOneBy({ email });
@@ -37,7 +48,7 @@ let UserService = class UserService {
         return this.repository.findOneBy(cond);
     }
     async search(dto) {
-        const qb = this.repository.createQueryBuilder('user');
+        const qb = this.repository.createQueryBuilder("user");
         qb.limit(dto.limit || 0);
         qb.take(dto.take || 10);
         if (dto.email) {

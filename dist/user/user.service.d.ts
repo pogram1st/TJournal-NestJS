@@ -1,9 +1,9 @@
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { UserEntity } from './entities/user.entity';
-import { Repository } from 'typeorm';
-import { LoginUserDto } from './dto/login-user-dto';
-import { SearchUserDto } from './dto/search-user.dto';
+import { CreateUserDto } from "./dto/create-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
+import { UserEntity } from "./entities/user.entity";
+import { Repository } from "typeorm";
+import { LoginUserDto } from "./dto/login-user-dto";
+import { SearchUserDto } from "./dto/search-user.dto";
 export declare class UserService {
     private repository;
     constructor(repository: Repository<UserEntity>);

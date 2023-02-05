@@ -1,18 +1,18 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { InjectRepository } from '@nestjs/typeorm';
-import { UserEntity } from './entities/user.entity';
-import { FindOneOptions, Repository } from 'typeorm';
-import { LoginUserDto } from './dto/login-user-dto';
-import { SearchUserDto } from './dto/search-user.dto';
+import { BadRequestException, Injectable } from "@nestjs/common";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
+import { InjectRepository } from "@nestjs/typeorm";
+import { UserEntity } from "./entities/user.entity";
+import { FindOneOptions, Repository } from "typeorm";
+import { LoginUserDto } from "./dto/login-user-dto";
+import { SearchUserDto } from "./dto/search-user.dto";
 
 @Injectable()
 export class UserService {
   // Инжектим USerEntity для того чтобы не прописывать постоянно поля которые должны быть
   constructor(
     @InjectRepository(UserEntity)
-    private repository: Repository<UserEntity>,
+    private repository: Repository<UserEntity>
   ) {}
 
   async create(dto: CreateUserDto) {
@@ -24,7 +24,18 @@ export class UserService {
   }
 
   findById(id: number) {
-    return this.repository.findOneBy({ id });
+    return this.repository.findOne({
+      where: {
+        id,
+      },
+      select: {
+        id: true,
+        fullName: true,
+        email: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
   }
 
   findByEmail(email: string) {
@@ -36,7 +47,7 @@ export class UserService {
   }
 
   async search(dto: SearchUserDto) {
-    const qb = this.repository.createQueryBuilder('user');
+    const qb = this.repository.createQueryBuilder("user");
     qb.limit(dto.limit || 0);
     qb.take(dto.take || 10);
     if (dto.email) {
