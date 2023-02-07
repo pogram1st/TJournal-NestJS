@@ -6,6 +6,7 @@ export declare class CommentController {
     constructor(commentService: CommentService);
     create(createCommentDto: CreateCommentDto, user: number): Promise<import("./entities/comment.entity").CommentEntity>;
     findAll(): Promise<import("./entities/comment.entity").CommentEntity[]>;
+    findCommUser(id: number): Promise<import("./entities/comment.entity").CommentEntity[]>;
     findAllByPostId(id: number): Promise<{
         items: import("./entities/comment.entity").CommentEntity[];
     }>;

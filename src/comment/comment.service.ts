@@ -33,6 +33,22 @@ export class CommentService {
     });
   }
 
+  async findCommUser(id: number) {
+    const comments = await this.repository.find({
+      order: { createdAt: "DESC" },
+      where: {
+        user: {
+          id: id,
+        },
+      },
+    });
+    return comments.map((obj) => {
+      delete obj.user.password;
+      delete obj.post.user.password;
+      return obj;
+    });
+  }
+
   async findAllByPostId(id: number) {
     const comments = await this.repository.find({
       order: { createdAt: "DESC" },

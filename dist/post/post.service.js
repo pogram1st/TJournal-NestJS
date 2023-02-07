@@ -49,6 +49,7 @@ let PostService = class PostService {
                     id: userId,
                 },
             },
+            relations: ["comments"],
         });
         return posts.map((obj) => {
             delete obj.user.password;

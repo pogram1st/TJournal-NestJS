@@ -39,6 +39,21 @@ let CommentService = class CommentService {
             return obj;
         });
     }
+    async findCommUser(id) {
+        const comments = await this.repository.find({
+            order: { createdAt: "DESC" },
+            where: {
+                user: {
+                    id: id,
+                },
+            },
+        });
+        return comments.map((obj) => {
+            delete obj.user.password;
+            delete obj.post.user.password;
+            return obj;
+        });
+    }
     async findAllByPostId(id) {
         const comments = await this.repository.find({
             order: { createdAt: "DESC" },
