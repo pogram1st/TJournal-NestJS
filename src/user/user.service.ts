@@ -75,6 +75,11 @@ export class UserService {
     const user = await this.repository.findOneBy({ id });
     if (password && password !== "") {
       if (dto.password === user.password) {
+        if (newPassword.length < 6) {
+          return new BadRequestException(
+            "Длина нового пароля должна быть более 6 символов!!!"
+          );
+        }
         return this.repository.update(id, newDto);
       } else {
         return new BadRequestException("Старый пароль введен не верно!!!");
