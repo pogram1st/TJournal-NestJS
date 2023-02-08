@@ -16,6 +16,6 @@ export declare class UserService {
         items: UserEntity[];
         total: number;
     }>;
-    update(id: number, dto: UpdateUserDto): Promise<import("typeorm").UpdateResult>;
+    update(id: number, dto: UpdateUserDto): Promise<import("typeorm").UpdateResult | Error>;
     remove(id: number): Promise<import("typeorm").DeleteResult>;
 }

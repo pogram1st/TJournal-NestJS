@@ -6,7 +6,7 @@ export declare class UserController {
     constructor(userService: UserService);
     getProfile(req: any): any;
     findAll(): Promise<import("./entities/user.entity").UserEntity[]>;
-    update(req: any, updateUserDto: UpdateUserDto): Promise<import("typeorm").UpdateResult> | {
+    update(req: any, updateUserDto: UpdateUserDto): Promise<import("typeorm").UpdateResult | Error> | {
         err: any;
         message: string;
     };

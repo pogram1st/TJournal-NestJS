@@ -68,8 +68,19 @@ export class UserService {
     };
   }
 
-  update(id: number, dto: UpdateUserDto) {
-    return this.repository.update(id, dto);
+  async update(id: number, dto: UpdateUserDto) {
+    console.log(dto);
+    const { password, newPassword, ...data } = dto;
+    const newDto = { ...data, password: newPassword };
+    const user = await this.repository.findOneBy({ id });
+    if (password && password !== "") {
+      if (dto.password === user.password) {
+        return this.repository.update(id, newDto);
+      } else {
+        return Error("Старый пароль введен неверно");
+      }
+    }
+    return this.repository.update(id, { ...data });
   }
 
   remove(id: number) {

@@ -103,7 +103,12 @@ let PostService = class PostService {
             .update()
             .set({ views: () => "views + 1" })
             .execute();
-        const post = await this.repository.findOneBy({ id });
+        const post = await this.repository.findOne({
+            where: {
+                id: id,
+            },
+            relations: ["comments"],
+        });
         delete post.user.password;
         return post;
     }
