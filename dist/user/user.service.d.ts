@@ -1,3 +1,4 @@
+import { BadRequestException } from "@nestjs/common";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { UserEntity } from "./entities/user.entity";
@@ -16,6 +17,6 @@ export declare class UserService {
         items: UserEntity[];
         total: number;
     }>;
-    update(id: number, dto: UpdateUserDto): Promise<import("typeorm").UpdateResult | Error>;
+    update(id: number, dto: UpdateUserDto): Promise<import("typeorm").UpdateResult | BadRequestException>;
     remove(id: number): Promise<import("typeorm").DeleteResult>;
 }

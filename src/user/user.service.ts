@@ -77,7 +77,7 @@ export class UserService {
       if (dto.password === user.password) {
         return this.repository.update(id, newDto);
       } else {
-        return Error("Старый пароль введен неверно");
+        return new BadRequestException("Старый пароль введен не верно!!!");
       }
     }
     return this.repository.update(id, { ...data });

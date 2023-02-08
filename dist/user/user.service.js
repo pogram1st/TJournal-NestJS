@@ -88,7 +88,7 @@ let UserService = class UserService {
                 return this.repository.update(id, newDto);
             }
             else {
-                return Error("Старый пароль введен неверно");
+                return new common_1.BadRequestException("Старый пароль введен не верно!!!");
             }
         }
         return this.repository.update(id, Object.assign({}, data));
