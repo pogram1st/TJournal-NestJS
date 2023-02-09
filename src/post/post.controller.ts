@@ -39,7 +39,7 @@ export class PostController {
 
   @UseGuards(JwtAuthGuard)
   @Delete(":id")
-  remove(@User() userId: number, @Param("id") id: string) {
+  remove(@User() userId: number, @Param("id") id: number) {
     return this.postService.remove(+id, userId);
   }
 

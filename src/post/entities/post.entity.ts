@@ -35,7 +35,9 @@ export class PostEntity {
   @JoinColumn({ name: "userId" })
   user: UserEntity;
 
-  @OneToMany(() => CommentEntity, (CommentEntity) => CommentEntity.post)
+  @OneToMany(() => CommentEntity, (CommentEntity) => CommentEntity.post, {
+    onDelete: "CASCADE",
+  })
   @JoinColumn({ name: "comments" })
   comments: CommentEntity[];
 

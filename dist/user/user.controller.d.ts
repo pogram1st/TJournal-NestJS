@@ -6,7 +6,7 @@ export declare class UserController {
     constructor(userService: UserService);
     getProfile(req: any): any;
     findAll(): Promise<import("./entities/user.entity").UserEntity[]>;
-    update(req: any, updateUserDto: UpdateUserDto): Promise<import("typeorm").UpdateResult | import("@nestjs/common").BadRequestException> | {
+    update(req: any, updateUserDto: UpdateUserDto): Promise<import("@nestjs/common").BadRequestException | import("typeorm").UpdateResult> | {
         err: any;
         message: string;
     };

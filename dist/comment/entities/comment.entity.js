@@ -29,7 +29,11 @@ __decorate([
     __metadata("design:type", user_entity_1.UserEntity)
 ], CommentEntity.prototype, "user", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => post_entity_1.PostEntity, { nullable: false, eager: true }),
+    (0, typeorm_1.ManyToOne)(() => post_entity_1.PostEntity, {
+        nullable: false,
+        eager: true,
+        onDelete: "CASCADE",
+    }),
     (0, typeorm_1.JoinColumn)({ name: "postId" }),
     __metadata("design:type", post_entity_1.PostEntity)
 ], CommentEntity.prototype, "post", void 0);

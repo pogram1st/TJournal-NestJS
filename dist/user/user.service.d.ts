@@ -17,6 +17,6 @@ export declare class UserService {
         items: UserEntity[];
         total: number;
     }>;
-    update(id: number, dto: UpdateUserDto): Promise<import("typeorm").UpdateResult | BadRequestException>;
+    update(id: number, dto: UpdateUserDto): Promise<BadRequestException | import("typeorm").UpdateResult>;
     remove(id: number): Promise<import("typeorm").DeleteResult>;
 }

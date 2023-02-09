@@ -41,7 +41,9 @@ __decorate([
     __metadata("design:type", user_entity_1.UserEntity)
 ], PostEntity.prototype, "user", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => comment_entity_1.CommentEntity, (CommentEntity) => CommentEntity.post),
+    (0, typeorm_1.OneToMany)(() => comment_entity_1.CommentEntity, (CommentEntity) => CommentEntity.post, {
+        onDelete: "CASCADE",
+    }),
     (0, typeorm_1.JoinColumn)({ name: "comments" }),
     __metadata("design:type", Array)
 ], PostEntity.prototype, "comments", void 0);

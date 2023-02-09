@@ -131,6 +131,7 @@ let PostService = class PostService {
     }
     async remove(id, userId) {
         const find = await this.repository.findOneBy({ id });
+        console.log(find);
         if (!find) {
             throw new common_1.NotFoundException("Статья не найдена");
         }

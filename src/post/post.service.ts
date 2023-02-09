@@ -137,6 +137,7 @@ export class PostService {
 
   async remove(id: number, userId: number) {
     const find = await this.repository.findOneBy({ id });
+    console.log(find);
     if (!find) {
       throw new NotFoundException("Статья не найдена");
     }

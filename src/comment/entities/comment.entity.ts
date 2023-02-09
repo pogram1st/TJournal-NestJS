@@ -22,7 +22,11 @@ export class CommentEntity {
   @JoinColumn({ name: "userId" })
   user: UserEntity;
 
-  @ManyToOne(() => PostEntity, { nullable: false, eager: true })
+  @ManyToOne(() => PostEntity, {
+    nullable: false,
+    eager: true,
+    onDelete: "CASCADE",
+  })
   @JoinColumn({ name: "postId" })
   post: PostEntity;
 
