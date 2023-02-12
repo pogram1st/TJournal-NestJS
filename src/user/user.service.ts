@@ -22,6 +22,7 @@ export class UserService {
   findAll() {
     return this.repository.find({
       select: { id: true, fullName: true, email: true, createdAt: true },
+      relations: ["subscriptions", "subscribe"],
     });
   }
 
@@ -37,6 +38,7 @@ export class UserService {
         createdAt: true,
         updatedAt: true,
       },
+      relations: ["subscriptions"],
     });
   }
 

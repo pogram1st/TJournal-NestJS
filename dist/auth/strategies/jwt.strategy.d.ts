@@ -11,6 +11,8 @@ export declare class JwtStrategy extends JwtStrategy_base {
         id: number;
         fullName: string;
         email: string;
+        subscriptions: import("../../subscriptions/entities/subscription.entity").SubscriptionEntity[];
+        subscribe: import("../../subscriptions/entities/subscription.entity").SubscriptionEntity[];
         createdAt: Date;
         updatedAt: Date;
     }>;

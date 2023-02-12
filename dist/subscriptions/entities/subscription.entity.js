@@ -19,12 +19,12 @@ __decorate([
     __metadata("design:type", Number)
 ], SubscriptionEntity.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => user_entity_1.UserEntity, { nullable: false, eager: true }),
+    (0, typeorm_1.ManyToOne)(() => user_entity_1.UserEntity, { cascade: true, eager: true }),
     (0, typeorm_1.JoinColumn)({ name: "channelId" }),
     __metadata("design:type", user_entity_1.UserEntity)
 ], SubscriptionEntity.prototype, "channel", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => user_entity_1.UserEntity, { nullable: false, eager: true }),
+    (0, typeorm_1.ManyToOne)(() => user_entity_1.UserEntity, { cascade: true, eager: true }),
     (0, typeorm_1.JoinColumn)({ name: "subscriberId" }),
     __metadata("design:type", user_entity_1.UserEntity)
 ], SubscriptionEntity.prototype, "subscriber", void 0);

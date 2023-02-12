@@ -10,35 +10,51 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserEntity = void 0;
+const subscription_entity_1 = require("../../subscriptions/entities/subscription.entity");
 const typeorm_1 = require("typeorm");
+const typeorm_2 = require("typeorm");
 let UserEntity = class UserEntity {
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    (0, typeorm_2.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
 ], UserEntity.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_2.Column)(),
     __metadata("design:type", String)
 ], UserEntity.prototype, "fullName", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ unique: true }),
+    (0, typeorm_2.Column)({ unique: true }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "email", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ nullable: true }),
+    (0, typeorm_2.Column)({ nullable: true }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "password", void 0);
 __decorate([
-    (0, typeorm_1.CreateDateColumn)({ type: "timestamp" }),
+    (0, typeorm_2.OneToMany)(() => subscription_entity_1.SubscriptionEntity, (SubscriptionEntity) => SubscriptionEntity.channel, {
+        onDelete: "CASCADE",
+    }),
+    (0, typeorm_1.JoinColumn)({ name: "subscriptions" }),
+    __metadata("design:type", Array)
+], UserEntity.prototype, "subscriptions", void 0);
+__decorate([
+    (0, typeorm_2.OneToMany)(() => subscription_entity_1.SubscriptionEntity, (SubscriptionEntity) => SubscriptionEntity.subscriber, {
+        onDelete: "CASCADE",
+    }),
+    (0, typeorm_1.JoinColumn)({ name: "subscribe" }),
+    __metadata("design:type", Array)
+], UserEntity.prototype, "subscribe", void 0);
+__decorate([
+    (0, typeorm_2.CreateDateColumn)({ type: "timestamp" }),
     __metadata("design:type", Date)
 ], UserEntity.prototype, "createdAt", void 0);
 __decorate([
-    (0, typeorm_1.UpdateDateColumn)({ type: "timestamp" }),
+    (0, typeorm_2.UpdateDateColumn)({ type: "timestamp" }),
     __metadata("design:type", Date)
 ], UserEntity.prototype, "updatedAt", void 0);
 UserEntity = __decorate([
-    (0, typeorm_1.Entity)("users")
+    (0, typeorm_2.Entity)("users")
 ], UserEntity);
 exports.UserEntity = UserEntity;
 //# sourceMappingURL=user.entity.js.map

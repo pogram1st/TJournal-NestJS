@@ -15,6 +15,8 @@ export declare class AuthService {
         id: number;
         fullName: string;
         email: string;
+        subscriptions: import("../subscriptions/entities/subscription.entity").SubscriptionEntity[];
+        subscribe: import("../subscriptions/entities/subscription.entity").SubscriptionEntity[];
         createdAt: Date;
         updatedAt: Date;
         access_token: string;
