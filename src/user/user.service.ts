@@ -20,7 +20,9 @@ export class UserService {
   }
 
   findAll() {
-    return this.repository.find();
+    return this.repository.find({
+      select: { id: true, fullName: true, email: true, createdAt: true },
+    });
   }
 
   findById(id: number) {

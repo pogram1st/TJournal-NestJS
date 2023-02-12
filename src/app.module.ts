@@ -1,3 +1,4 @@
+import { SubscriptionEntity } from "./subscriptions/entities/subscription.entity";
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { AppController } from "./app.controller";
@@ -9,6 +10,7 @@ import { PostEntity } from "./post/entities/post.entity";
 import { CommentModule } from "./comment/comment.module";
 import { CommentEntity } from "./comment/entities/comment.entity";
 import { AuthModule } from "./auth/auth.module";
+import { SubscriptionsModule } from "./subscriptions/subscriptions.module";
 
 @Module({
   imports: [
@@ -20,13 +22,14 @@ import { AuthModule } from "./auth/auth.module";
       username: "adminchik",
       password: "yCtmaw3JnNOpHxcWVPz87w0UPOP6N5jn",
       database: "tjournal",
-      entities: [UserEntity, PostEntity, CommentEntity], // Передаем в зависимости Entity
+      entities: [UserEntity, PostEntity, CommentEntity, SubscriptionEntity], // Передаем в зависимости Entity
       synchronize: true,
     }),
     UserModule,
     PostModule,
     CommentModule,
     AuthModule,
+    SubscriptionsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

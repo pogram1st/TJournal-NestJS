@@ -4,11 +4,9 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
   CreateDateColumn,
-} from 'typeorm';
+} from "typeorm";
 
-//Обозначаем  какие поля должны быть  в нашей БД и они автоматически создадутся
-
-@Entity('users')
+@Entity("users")
 export class UserEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -22,9 +20,9 @@ export class UserEntity {
   @Column({ nullable: true })
   password?: string;
 
-  @CreateDateColumn({ type: 'timestamp' })
+  @CreateDateColumn({ type: "timestamp" })
   createdAt: Date;
 
-  @UpdateDateColumn({ type: 'timestamp' })
+  @UpdateDateColumn({ type: "timestamp" })
   updatedAt: Date;
 }

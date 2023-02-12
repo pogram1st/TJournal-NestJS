@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
+const subscription_entity_1 = require("./subscriptions/entities/subscription.entity");
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const app_controller_1 = require("./app.controller");
@@ -18,6 +19,7 @@ const post_entity_1 = require("./post/entities/post.entity");
 const comment_module_1 = require("./comment/comment.module");
 const comment_entity_1 = require("./comment/entities/comment.entity");
 const auth_module_1 = require("./auth/auth.module");
+const subscriptions_module_1 = require("./subscriptions/subscriptions.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -31,13 +33,14 @@ AppModule = __decorate([
                 username: "adminchik",
                 password: "yCtmaw3JnNOpHxcWVPz87w0UPOP6N5jn",
                 database: "tjournal",
-                entities: [user_entity_1.UserEntity, post_entity_1.PostEntity, comment_entity_1.CommentEntity],
+                entities: [user_entity_1.UserEntity, post_entity_1.PostEntity, comment_entity_1.CommentEntity, subscription_entity_1.SubscriptionEntity],
                 synchronize: true,
             }),
             user_module_1.UserModule,
             post_module_1.PostModule,
             comment_module_1.CommentModule,
             auth_module_1.AuthModule,
+            subscriptions_module_1.SubscriptionsModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

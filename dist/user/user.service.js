@@ -36,7 +36,9 @@ let UserService = class UserService {
         return await this.repository.save(dto);
     }
     findAll() {
-        return this.repository.find();
+        return this.repository.find({
+            select: { id: true, fullName: true, email: true, createdAt: true },
+        });
     }
     findById(id) {
         return this.repository.findOne({
