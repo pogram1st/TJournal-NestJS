@@ -38,12 +38,15 @@ export class UserService {
         createdAt: true,
         updatedAt: true,
       },
-      relations: ["subscriptions"],
+      relations: ["subscriptions", "subscribe"],
     });
   }
 
   findByEmail(email: string) {
-    return this.repository.findOneBy({ email });
+    return this.repository.findOne({
+      where: { email },
+      relations: ["subscriptions", "subscribe"],
+    });
   }
 
   findByCond(cond: LoginUserDto) {
