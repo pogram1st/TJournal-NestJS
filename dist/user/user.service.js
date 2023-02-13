@@ -53,11 +53,14 @@ let UserService = class UserService {
                 createdAt: true,
                 updatedAt: true,
             },
-            relations: ["subscriptions"],
+            relations: ["subscriptions", "subscribe"],
         });
     }
     findByEmail(email) {
-        return this.repository.findOneBy({ email });
+        return this.repository.findOne({
+            where: { email },
+            relations: ["subscriptions", "subscribe"],
+        });
     }
     findByCond(cond) {
         return this.repository.findOneBy(cond);

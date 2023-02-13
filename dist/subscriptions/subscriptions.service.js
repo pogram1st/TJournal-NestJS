@@ -29,15 +29,15 @@ let SubscriptionsService = class SubscriptionsService {
             },
         });
         if (repo) {
-            this.repository.delete(repo.id);
-            return { message: "Unsubscribe" };
+            const unSub = this.repository.delete(repo.id);
+            return { message: "Unsubscribe", unSub };
         }
         else {
             const sub = await this.repository.save({
                 channel: { id: channelId },
                 subscriber: { id: userId },
             });
-            return { message: "Subscribe" };
+            return { message: "Subscribe", sub };
         }
     }
     async getAllSubscriptionsUser(userId) {
