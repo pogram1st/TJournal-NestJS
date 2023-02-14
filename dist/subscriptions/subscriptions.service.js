@@ -29,7 +29,7 @@ let SubscriptionsService = class SubscriptionsService {
             },
         });
         if (repo) {
-            const unSub = this.repository.delete(repo.id);
+            const unSub = await this.repository.delete(repo.id);
             return { message: "Unsubscribe", unSub };
         }
         else {

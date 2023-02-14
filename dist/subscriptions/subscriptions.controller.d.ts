@@ -4,7 +4,7 @@ export declare class SubscriptionsController {
     constructor(subscriptionsService: SubscriptionsService);
     subscribe(userId: number, channelId: number): Promise<{
         message: string;
-        unSub: Promise<import("typeorm").DeleteResult>;
+        unSub: import("typeorm").DeleteResult;
         sub?: undefined;
     } | {
         message: string;

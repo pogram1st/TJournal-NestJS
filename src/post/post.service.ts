@@ -33,7 +33,7 @@ export class PostService {
   async findAll() {
     const posts = await this.repository.find({
       order: { createdAt: "DESC" },
-      relations: ["comments"],
+      relations: ["comments", "user.subscribe", "user.subscriptions"],
     });
     return posts.map((obj) => {
       delete obj.user.password;
@@ -111,7 +111,7 @@ export class PostService {
       where: {
         id: id,
       },
-      relations: ["comments"],
+      relations: ["comments", "user.subscribe", "user.subscriptions"],
     });
     delete post.user.password;
     return post;
