@@ -28,6 +28,7 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("./entities/user.entity");
 const typeorm_2 = require("typeorm");
+const subscription_entity_1 = require("../subscriptions/entities/subscription.entity");
 let UserService = class UserService {
     constructor(repository) {
         this.repository = repository;
@@ -35,10 +36,20 @@ let UserService = class UserService {
     async create(dto) {
         return await this.repository.save(dto);
     }
-    findAll() {
-        return this.repository.find({
-            select: { id: true, fullName: true, email: true, createdAt: true },
-            relations: ["subscriptions", "subscribe"],
+    async findAll() {
+        const qb = await this.repository
+            .createQueryBuilder("a")
+            .select("a.id")
+            .addSelect("a.fullName")
+            .addSelect("a.email")
+            .addSelect("a.createdAt")
+            .addSelect("a.updatedAt")
+            .leftJoinAndMapMany("a.subscriptions", subscription_entity_1.SubscriptionEntity, "subscriptions", "a.id = subscriptions.channel.id")
+            .loadRelationCountAndMap("a.subscriptionsCount", "a.subscriptions", "subscriptions")
+            .getMany();
+        return qb.map((item) => {
+            delete item.subscriptions;
+            return item;
         });
     }
     findById(id) {

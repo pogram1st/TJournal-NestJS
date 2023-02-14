@@ -6,6 +6,10 @@ import { UserEntity } from "./entities/user.entity";
 import { FindOneOptions, Repository } from "typeorm";
 import { LoginUserDto } from "./dto/login-user-dto";
 import { SearchUserDto } from "./dto/search-user.dto";
+import { Length } from "class-validator";
+import { CommentEntity } from "../comment/entities/comment.entity";
+import { SubscriptionsController } from "../subscriptions/subscriptions.controller";
+import { SubscriptionEntity } from "../subscriptions/entities/subscription.entity";
 
 @Injectable()
 export class UserService {
@@ -19,11 +23,39 @@ export class UserService {
     return await this.repository.save(dto);
   }
 
-  findAll() {
-    return this.repository.find({
-      select: { id: true, fullName: true, email: true, createdAt: true },
-      relations: ["subscriptions", "subscribe"],
+  async findAll() {
+    const qb = await this.repository
+      .createQueryBuilder("a")
+      .select("a.id")
+      .addSelect("a.fullName")
+      .addSelect("a.email")
+      .addSelect("a.createdAt")
+      .addSelect("a.updatedAt")
+      .leftJoinAndMapMany(
+        "a.subscriptions",
+        SubscriptionEntity,
+        "subscriptions",
+        "a.id = subscriptions.channel.id"
+      )
+      .loadRelationCountAndMap(
+        "a.subscriptionsCount",
+        "a.subscriptions",
+        "subscriptions"
+      )
+      .getMany();
+
+    return qb.map((item) => {
+      delete item.subscriptions;
+      return item;
     });
+
+    // return this.repository.find({
+    //   select: { id: true, fullName: true, email: true, createdAt: true },
+    //   relations: ["subscriptions", "subscribe"],
+    //   order: {
+
+    //   }
+    // });
   }
 
   findById(id: number) {
