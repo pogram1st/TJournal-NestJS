@@ -17,11 +17,11 @@ import { SubscriptionsModule } from "./subscriptions/subscriptions.module";
     TypeOrmModule.forRoot({
       ssl: true,
       type: "postgres",
-      host: "dpg-cfdgta9a6gdja6bkaqug-a.frankfurt-postgres.render.com",
+      host: "dpg-ci6le5unqql0ld99b5i0-a.frankfurt-postgres.render.com",
       port: 5432,
       username: "adminchik",
-      password: "yCtmaw3JnNOpHxcWVPz87w0UPOP6N5jn",
-      database: "tjournal",
+      password: "PIHblTAa9wYmXPvxA51MbfYMY3V51Bdg",
+      database: "tjournal_hn9f",
       entities: [UserEntity, PostEntity, CommentEntity, SubscriptionEntity], // Передаем в зависимости Entity
       synchronize: true,
     }),

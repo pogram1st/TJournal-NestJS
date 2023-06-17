@@ -17,5 +17,9 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false
-  }
+  },
+  "lib": ["esnext"],
+  "module": "CommonJS",
+  "target": "esnext",
+  "moduleResolution": "node"
 }
